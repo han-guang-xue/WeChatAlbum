@@ -1,0 +1,16 @@
+image{
+  width: 300rpx;
+  height: 300rpx;
+  border: 1rpx burlywood solid;
+}
+.image1{
+background: url(https://api-ycx.drarea.com/YCX//ThumbnailImages/ReportImagesEvent/830/a048bbeb9b22d830/2020/1578452170428_wx9d9b701763f22e40.o6zAJs4H81Cgcl3mlbwDE3B8pGAo.Ci16731tyBc3bbfb8012df099bc0f997f06cfd5f5e40.jpg) no-repeat center center;
+}
+
+dic{
+  display: block;
+}
+.d-1{
+  width:700rpx;height:300rpx;border:1rpx red solid;margin-left:20rpx;
+}
+.d-2{width:100rpx;height:100rpx;margin-left:10rpx;border:1rpx blue solid;}

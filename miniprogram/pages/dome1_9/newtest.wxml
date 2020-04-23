@@ -1,0 +1,3 @@
+<text bindtap="dome">
+{{data}}
+</text>

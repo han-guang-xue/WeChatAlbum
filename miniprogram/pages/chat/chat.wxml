@@ -1,0 +1,8 @@
+<view class="d-main">
+    <view class="d-1">
+        <chatTool id="chatTool"></chatTool>
+    </view>
+    <view class="d-2">
+        <chatTool id="btnTool"></chatTool>
+    </view>
+</view>

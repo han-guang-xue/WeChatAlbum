@@ -1,0 +1,4 @@
+<button bindtap="tapdome" 
+  data-domeString="{{domeString}}"> 
+ 点击
+</button>

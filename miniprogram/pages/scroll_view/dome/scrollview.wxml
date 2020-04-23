@@ -1,0 +1,10 @@
+<view>
+  scroll-view 测试
+</view>
+
+<scroll-view scroll-x="{{true}}" 
+  scroll-into-view="{{toview}}" scroll-with-animation="{{true}}"
+  bindscrolltolower="rightSideIntercept" lower-threshold="{{10}}"
+  style="height:200rpx;width:90%;border:1rpx solid red;margin-left:30rpx;white-space: nowrap;">
+  <view wx:for="{{10}}" id="view_{{item}}" style="height:100rpx;width:100rpx;margin-right:20rpx;background:green;display:inline-block;">{{item}}</view>
+</scroll-view>

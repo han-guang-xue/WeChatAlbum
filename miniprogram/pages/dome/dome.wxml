@@ -1,0 +1,18 @@
+<view style="color:red;padding:200rpx;">
+  {{curData}}
+</view>
+
+<view wx:for="{{curDataArray}}" wx:for-item="item">
+<!-- item 代表数组 curDataArray 中的属性 -->
+  {{item}}   
+</view>
+
+<view style="margin-top:30rpx">
+  <view>{{curDataObject.name}}</view>
+  <view>{{curDataObject.age}}</view>
+</view>
+
+<view wx:for="{{curDataArrayObject}}" style="color:{{item.ecolor}};">
+  <text>{{item.ccolor}}{{item.name}}</text>
+  <text>: {{item.ecolor}}{{item.age}}</text>
+</view>

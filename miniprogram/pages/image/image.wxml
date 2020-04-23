@@ -1,0 +1,22 @@
+<view>
+<image class="image1"></image>
+
+<view>
+<image wx:for="{{curData}}" bindtap="dome1" style="background: url({{item}}) no-repeat center center;"></image>
+</view>
+
+<button bindtap="text">上传图片</button>
+
+<dic>123</dic>
+
+<view>123ads</view>
+
+<view class="d-1">
+  <view wx:for="{{3}}" class="d-2" style="display:inline-block;"></view>
+</view>
+
+</view>
+
+<canvas canvas-id="actReview" style="height:400rpx;width:500rpx;border: rgba(115, 116, 113, 0.6) solid 1rpx;">
+   
+</canvas>

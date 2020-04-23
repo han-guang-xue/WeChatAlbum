@@ -1,0 +1,14 @@
+
+<view class="mydome"
+  bindtouchstart="_touchstart"
+  bindtouchmove="_touchmove" 
+  bindtouchend="_touchend"
+></view>
+
+<view class="box1" animation="{{animation}}">
+  <view class="box animation_{{isTrue}}">
+    <view class="box_child" wx:for="{{6}}">{{item}}
+      <image class="box_image" src="../../static/images/dome{{index+1}}.jpg"></image>
+    </view>
+  </view>
+</view>

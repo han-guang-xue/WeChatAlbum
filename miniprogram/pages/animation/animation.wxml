@@ -1,0 +1,3 @@
+<movable-area wx:for="{{3}}" animation="{{animation}}" style="background:red;width:100rpx;height:100rpx;margin-top:20rpx;">
+
+</movable-area>

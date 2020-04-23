@@ -1,0 +1,10 @@
+<view>用户昵称:{{user.nickName}}</view>
+<view>用户头像:<image style="width:40rpx;height:40rpx;" src="{{user.avatarUrl}}"/></view>
+<view>用户性别:{{user.gender===1?"男":"女"}}</view>
+<view>位置信息:{{user.nickName}}</view>
+<view>语言:{{user.language}}</view>
+<view>绑定的手机号:{{user.nickName}}</view>
+<view>运动:{{user.nickName}}步数</view>
+<view>位置:{{user.nickName}}</view>
+<view>速度:{{user.nickName}}</view>
+<view>高度:{{user.nickName}}</view>

@@ -1,0 +1,24 @@
+{
+  "pages": [
+    "pages/image/image",
+    "pages/index/index",
+    "pages/chat/chat",
+    "components/chat/chat",
+    "pages/scroll_view/dome/scrollview",
+    "pages/dome1_9/dome",
+    "pages/dome/dome",
+    "pages/dome1_9/newtest",
+    "pages/animation/animation",
+    "pages/npmpak/npmpak",
+    "pages/stereogram/index"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "云开发 QuickStart",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}
