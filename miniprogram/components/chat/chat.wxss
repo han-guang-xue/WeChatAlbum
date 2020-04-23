@@ -1,0 +1,955 @@
+/* ----------------------------按钮组件-------------------------------- */
+
+.component {
+    width: 100%;
+    height: 100%;
+    font-size: 40rpx;
+}
+
+.main_content {
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    display: -webkit-flex;
+    position: relative;
+}
+
+.content {
+    width: auto;
+}
+
+.content_value {
+    width: auto;
+    float: left;
+}
+
+.select_day {
+    width: 150rpx;
+    position: absolute;
+    top: 0;
+    font-size: 50rpx;
+}
+
+.select_day_left {
+    border-right: #00A7DE 1rpx solid;
+    left: 0;
+}
+
+.select_day_right {
+    border-left: #00A7DE 1rpx solid;
+    right: 0;
+}
+
+.icon {
+    width: auto;
+    height: 100%;
+    float: left;
+    margin-right: 30rpx;
+    margin-top: 10rpx;
+}
+
+.icon image {
+    width: 48rpx;
+    height: 48rpx;
+}
+
+.BL_2_M1 {
+    width: 500rpx;
+    margin: auto;
+    height: 100%;
+}
+
+.BL_2_M1 .btn_0,
+.BL_2_M1 .btn_1 {
+    height: 90rpx;
+    width: 250rpx;
+    line-height: 90rpx;
+    text-align: center;
+    color: #ffffff;
+    font-size: 40rpx;
+}
+
+.BL_2_M1 .btn_0 {
+    background: linear-gradient(-75deg, transparent 25rpx, #FE7B11 0) bottom left;
+    float: left;
+    margin-top: 200rpx;
+    border-top-left-radius: 45rpx;
+    border-bottom-left-radius: 45rpx;
+}
+
+.BL_2_M1 .btn_1 {
+    background: linear-gradient(105deg, transparent 25rpx, #00A7DE 0) top left;
+    float: right;
+    margin-top: 200rpx;
+    border-top-right-radius: 45rpx;
+    border-bottom-right-radius: 45rpx;
+}
+
+.BL_2_M2 {
+    width: 700rpx;
+    margin: auto;
+    height: 100%;
+}
+
+.BL_2_M2 .btn_0,
+.BL_2_M2 .btn_1 {
+    height: 88rpx;
+    width: 320rpx;
+    line-height: 90rpx;
+    text-align: center;
+    color: #ffffff;
+    border-radius: 20rpx;
+}
+
+.BL_2_M2 .btn_0 {
+    background: #00A7DE;
+    float: left;
+    margin-top: 200rpx;
+    vertical-align: middle;
+}
+
+.BL_2_M2 .btn_1 {
+    background: #00A7DE;
+    float: right;
+    margin-top: 200rpx;
+}
+
+.PL_M3,
+.PL_M1,
+.PL_M2 {
+    height: auto;
+    max-height: 100%;
+    width: 100%;
+    position: fixed;
+    bottom: 50rpx;
+    left: 96rpx;
+}
+
+.PL_M1_1,
+.PL_M2_1 {
+    height: auto;
+    width: 100%;
+}
+
+.PL_M1 .btn_number,
+.PL_M1_1 .btn_number {
+    width: 574rpx;
+    height: 88rpx;
+    background: #00A7DE;
+    color: #ffffff;
+    line-height: 88rpx;
+    text-align: center;
+    border-radius: 20rpx;
+    margin-top: 20rpx;
+}
+
+.PL_M2 .btn_number,
+.PL_M2_1 .btn_number {
+    width: 574rpx;
+    height: 88rpx;
+    background: #ffffff;
+    color: #00A7DE;
+    line-height: 88rpx;
+    text-align: center;
+    border-radius: 20rpx;
+    margin-top: 20rpx;
+    border: #00A7DE 1rpx solid;
+}
+
+.PL_M3 .btn_number {
+    width: 574rpx;
+    height: 88rpx;
+    background: #ffffff;
+    color: #00A7DE;
+    line-height: 88rpx;
+    text-align: center;
+    border-radius: 20rpx;
+    margin-top: 20rpx;
+    -moz-box-shadow: 0px 1px 3px #C7C7C7;
+    -webkit-box-shadow: 0px 1px 3px #C7C7C7;
+    box-shadow: 0px 1px 3px #C7C7C7;
+}
+
+.PL_M2_1 .btn_number,
+.PL_M1_1 .btn_number {
+    margin: auto;
+}
+
+
+/* input输入框组件 */
+
+._input {
+    width: 100%;
+    height: 100rpx;
+    position: absolute;
+    left: 0;
+    bottom: 0rpx;
+    padding-left: 20rpx;
+    padding-right: 10rpx;
+    padding-top: 10rpx;
+    padding-bottom: 20rpx;
+    background: #fff;
+}
+
+.input_lable {
+    float: left;
+    width: 600rpx;
+    height: 80rpx;
+}
+
+.issend {
+    float: right;
+    height: 80rpx;
+    width: 100rpx;
+    color: #9D9D9D;
+    padding-right: 20rpx;
+    line-height: 80rpx;
+    font-size: 40rpx;
+}
+
+.input_c {
+    width: 100%;
+    height: 80rpx;
+    line-height: 60rpx;
+    background: #F0F0F0;
+    border-radius: 20rpx;
+    padding-left: 10rpx;
+    padding-right: 10rpx;
+}
+
+
+/* ----------------------------按钮组件-------------------------------- */
+
+
+/* ----------------------------当前页日期组件-------------------------------- */
+
+.piker {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 400rpx;
+    width: 100%;
+    background: #fff;
+}
+
+.piker_main {
+    width: 100%;
+    height: 300rpx;
+    padding-top: 30rpx;
+}
+
+
+/* ----------------------------当前页日期组件-------------------------------- */
+
+.notice_icon {
+    width: 60rpx;
+    height: 60rpx;
+    float: left;
+}
+
+.notice_content {
+    width: 580rpx;
+    height: auto;
+    min-height: 60rpx;
+    float: left;
+    line-height: 50rpx;
+}
+
+
+/* ----------------------------聊天组件-------------------------------- */
+
+.chat_time {
+    width: 100%;
+    height: auto;
+    text-align: center;
+    font-size: 20rpx;
+    color: #737471;
+    line-height: 50rpx;
+}
+
+.component_chat {
+    width: 100%;
+    height: 100%;
+}
+
+.d-scroll_1 {
+    width: 100%;
+    height: 100%;
+    background: #F8F8F8;
+}
+
+.chat {
+    width: 100%;
+    height: auto;
+    clear: both;
+    padding-top: 20rpx;
+}
+
+.chat_contet {
+    max-width: 70%;
+    width: auto;
+    height: auto;
+    background: #ffffff;
+    word-wrap: break-word;
+    word-break: break-all;
+    overflow: hidden;
+    padding: 10rpx 40rpx;
+    -moz-box-shadow: 6px 4px 4px #EAEAEA;
+    -webkit-box-shadow: 6px 4px 4px #EAEAEA;
+    box-shadow: 6px 4px 4px #EAEAEA;
+    margin-left: 26rpx;
+    margin-right: 26rpx;
+    line-height: 60rpx;
+}
+
+.chat_image {
+    width: 200rpx;
+    height: 280rpx;
+    margin-left: 26rpx;
+    margin-right: 26rpx;
+}
+
+.chat_contet_left {
+    float: left;
+    border-radius: 40rpx;
+    border-bottom-left-radius: 0;
+}
+
+.chat_contet_right {
+    float: right;
+    border-radius: 40rpx;
+    border-bottom-right-radius: 0;
+    background: #00A7DE;
+}
+
+.text_style {
+    float: left;
+    padding-left: 0rpx;
+    padding-right: 0rpx;
+}
+
+.text_style_tle_ {
+    clear: both;
+    width: 0rpx;
+    opacity: 0
+}
+
+::-webkit-scrollbar {
+    height: 3rpx;
+    max-width: 3rpx;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #bee1eb;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #00aff0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #9c3
+}
+
+::-webkit-scrollbar-thumb:active {
+    background-color: #00aff0
+}
+
+
+/* ----------------------------聊天组件-------------------------------- */
+
+
+/* ----------------------------卡片组件-------------------------------- */
+
+.card_middle {
+    width: 100%;
+    height: auto;
+}
+
+.card_middle_main {
+    width: 700rpx;
+    height: auto;
+    background: #ffffff;
+    margin: auto;
+    border-radius: 25rpx;
+    overflow: hidden;
+    padding-bottom: 20rpx;
+    position: relative;
+}
+
+.card_middle_message {
+    position: absolute;
+    top: 30rpx;
+    right: 30rpx;
+}
+
+.card_middle_message>image {
+    height: 46rpx;
+    width: 47rpx;
+}
+
+.card_middle_content {
+    height: auto;
+    padding-left: 30rpx;
+    padding-top: 18rpx;
+    padding-right: 30rpx;
+    padding-bottom: 10rpx;
+    font-size: 30rpx;
+}
+
+.card_middle_weather {
+    width: 100%;
+    height: auto;
+    padding-left: 30rpx;
+    font-size: 30rpx;
+    color: #707070;
+}
+
+.card_middle_btns {
+    width: 100%;
+    height: auto;
+}
+
+.card_middle_btn {
+    width: 316rpx;
+    height: 110rpx;
+    border-radius: 20rpx;
+    float: left;
+    margin-top: 23rpx;
+    margin-left: 23rpx;
+    align-items: center;
+    display: -webkit-flex;
+    justify-content: center;
+}
+
+.card_middle_btn_color1 {
+    color: #00A7DE;
+    border: #00A7DE 1rpx solid;
+}
+
+.card_middle_btn_color2 {
+    color: #FF972A;
+    border: #FF972A 1rpx solid;
+}
+
+.unmessage {
+    width: auto;
+    margin: auto;
+    height: 100%;
+}
+
+.unmessage_content {
+    width: 40rpx;
+    height: 40rpx;
+    background: #FF3030;
+    color: #fff;
+    border-radius: 20rpx;
+    float: left;
+    align-items: center;
+    display: -webkit-flex;
+    justify-content: center;
+    margin-top: 35rpx;
+    margin-right: 10rpx;
+    font-size: 26rpx;
+}
+
+.unmessage_lable {
+    height: 100%;
+    line-height: 110rpx;
+    width: auto;
+    float: left;
+}
+
+
+/* ----------------------------卡片组件-------------------------------- */
+
+
+/* ----------------------------菜单组件-------------------------------- */
+
+.card_list {
+    width: 650rpx;
+    height: auto;
+    border-radius: 20rpx;
+    margin-left: 25rpx;
+    margin-top: 25rpx;
+    margin-bottom: 25rpx;
+    border: #E5E5E5 solid 1rpx;
+}
+
+.card_list_1 {
+    width: 100%;
+    height: auto;
+    position: relative;
+}
+
+.card_list_2 {
+    float: left;
+    height: 90rpx;
+    line-height: 90rpx;
+    color: #00A7DE;
+    font-size: 30rpx;
+    padding-left: 30rpx;
+}
+
+.card_list_3 {
+    height: 90rpx;
+    line-height: 90rpx;
+    font-size: 30rpx;
+}
+
+.card_list_to {
+    position: absolute;
+    right: 20rpx;
+    top: 27rpx;
+    width: 15rpx;
+    height: 35rpx;
+}
+
+
+/* ----------------------------菜单组件-------------------------------- */
+
+
+/* ----------------------------刻度尺组件-------------------------------- */
+
+.scale_main {
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    position: relative;
+}
+
+.scale_value {
+    width: 100%;
+    height: 120rpx;
+    text-align: center;
+    line-height: 120rpx;
+    font-size: 60rpx;
+}
+
+.scale_scroll {
+    height: 152rpx;
+    background: #FFF9FA;
+    white-space: nowrap;
+}
+
+.scale_hidebar {
+    background: #FFF9FA;
+    position: absolute;
+    top: 272rpx;
+    height: 4rpx;
+    width: 100%;
+}
+
+.scale_scroll_main {
+    display: inline-block;
+    position: relative;
+}
+
+.scale {
+    width: 4rpx;
+    height: 80rpx;
+    margin: auto;
+    padding-left: 10rpx;
+    padding-right: 10rpx;
+}
+
+.scale_short {
+    height: 50rpx;
+    width: 2rpx;
+    background: #B4B4B4;
+    margin-top: -20rpx;
+}
+
+.scale_long {
+    width: 4rpx;
+    height: 80rpx;
+    background: #B4B4B4;
+}
+
+.scale_number {
+    position: absolute;
+    top: 95rpx;
+    left: -10rpx;
+    width: 60rpx;
+    height: 26rpx;
+    color: #B4B4B4;
+    font-size: 34rpx;
+    line-height: 26rpx;
+    text-align: center;
+}
+
+.scale_point {
+    position: absolute;
+    top: 120rpx;
+    width: 100%;
+    height: 1rpx;
+    z-index: 1000;
+}
+
+.scale_point_value {
+    margin: auto;
+    z-index: 100;
+    width: 40rpx;
+    height: 100rpx;
+}
+
+.scroll_end,
+.scroll_head {
+    display: inline-block;
+    position: relative;
+}
+
+
+/* 整体滚动条样式 */
+
+.calibration_thermometer .scale_point {
+    top: 90rpx;
+}
+
+.calibration_thermometer .scale_value {
+    color: red;
+}
+
+.calibration_thermometer .scale_scroll,
+.calibration_thermometer .scale_hidebar {
+    background: #FFF9FA;
+}
+
+.calibration_weight .scale_value,
+.calibration_height .scale_value {
+    color: #07A9DF;
+}
+
+.calibration_weight .scale_scroll,
+.calibration_weight .scale_hidebar,
+.calibration_height .scale_scroll,
+.calibration_height .scale_hidebar {
+    background: #F6FCFF;
+}
+
+
+/* 多选组件 */
+
+._select {
+    position: absolute;
+    bottom: 130rpx;
+    left: 0;
+    width: 100%;
+    min-height: 134rpx;
+    height: auto;
+}
+
+.select_main {
+    width: 650rpx;
+    min-height: 134rpx;
+    height: auto;
+    background: #fff;
+    border-radius: 20rpx;
+    margin: auto;
+    padding-top: 20rpx;
+}
+
+.select_true {
+    width: 100%;
+    height: 70rpx;
+    padding-top: 30rpx;
+    padding-bottom: 30rpx;
+    clear: both;
+}
+
+.select_btn {
+    width: 500rpx;
+    height: 70rpx;
+    margin: auto;
+    background: #fff;
+    border: #00A7DE 1rpx solid;
+    border-radius: 20rpx;
+    text-align: center;
+    line-height: 70rpx;
+    font-size: 40rpx;
+    color: #00A7DE;
+}
+
+.select_options {
+    width: 501rpx;
+    height: auto;
+    margin: auto;
+    padding-bottom: 20rpx;
+}
+
+.select_1 {
+    min-width: 150rpx;
+    height: 40rpx;
+    float: left;
+    margin-top: 20rpx;
+}
+
+.select_2 {
+    float: left;
+    height: 40rpx;
+    width: 40rpx;
+    border: 1rpx #00A7DE solid;
+    border-radius: 8rpx;
+}
+
+.select_4 {
+    float: left;
+    height: 40rpx;
+    width: 40rpx;
+    border: 1rpx #00A7DE solid;
+    border-radius: 40rpx;
+}
+
+.select_3 {
+    padding-left: 20rpx;
+    font-size: 30rpx;
+    float: left;
+}
+
+.select_scroll {
+    width: 100%;
+    height: auto;
+    min-height: 60rpx;
+    border-bottom: 1rpx solid #eeeeee;
+}
+
+.select_scroll:last-child {
+    border-bottom: 0rpx solid #eeeeee;
+}
+
+.select_scroll_1 {
+    float: left;
+    display: -webkit-flex;
+    align-items: center;
+    justify-content: center;
+    height: 60rpx;
+    width: 60rpx;
+}
+
+.select_scroll_2 {
+    width: 620rpx;
+    float: right;
+    height: auto;
+    min-height: 60rpx;
+    line-height: 60rpx;
+    text-align: left;
+    font-size: 30rpx;
+}
+
+.select_scroll_icon {
+    height: 35rpx;
+    width: 35rpx;
+    border: 1rpx #00A7DE solid;
+    border-radius: 40rpx;
+}
+
+.bottom_1 {
+    bottom: -10rpx;
+}
+
+
+/* 卡片消息组件 */
+
+.infocard {
+    max-width: 85%;
+    width: 85%;
+    background: 200rpx;
+    padding: 0;
+    border-radius: 20rpx;
+}
+
+.infocard .title {
+    height: 70rpx;
+    width: 100%;
+    line-height: 70rpx;
+    font-size: 32rpx;
+    background: #F0F0F0;
+    padding-left: 30rpx;
+    color: #19ADE0;
+}
+
+.infocard .content {
+    height: auto;
+    padding: 20rpx 40rpx;
+    background: #fff;
+    font-size: 32rpx;
+}
+
+.infocard_content_key {
+    padding-right: 20rpx;
+    float: left;
+    width: auto;
+}
+
+.infocard_content_value {
+    float: left;
+    width: auto;
+}
+
+.infocard_images {
+    position: relative;
+    width: 100%;
+    height: 200rpx;
+    background: #fff;
+}
+
+.infocard_image {
+    width: 144rpx;
+    height: 180rpx;
+    float: left;
+    padding: 20 5rpx;
+    margin-left: 14rpx;
+    border-radius: 10rpx;
+    position: relative;
+}
+
+.showHideImage {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: rgba(115, 116, 113, 0.6);
+    width: 100%;
+    height: 100%;
+    display: -webkit-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50rpx;
+    color: #fff;
+    border-radius: 10rpx;
+}
+
+
+/* 加载中动画 */
+
+.loading {
+    width: 30px;
+    height: 30px;
+    margin: 0 auto;
+    border-radius: 50%;
+    border: 3px solid #BEBEBE;
+    border-left: 3px solid #fff;
+    animation: load 1s linear infinite;
+    -moz-animation: load 1s linear infinite;
+    -webkit-animation: load 1s linear infinite;
+    -o-animation: load 1s linear infinite;
+}
+
+.loader {
+    float: left;
+}
+
+.loader {
+    position: relative;
+    width: 5rpx;
+    height: 5rpx;
+}
+
+.loader.small {
+    -webkit-transform: scale(.5);
+    transform: scale(.5);
+}
+
+.loader.circle-line,
+.loader.circle-round {
+    height: 5rpx;
+}
+
+.loader.circle-spin {
+    border-radius: 50%;
+    border: .2rpx solid rgba(0, 0, 0, .05);
+    width: 60rpx;
+    height: 60rpx;
+    box-sizing: content-box;
+}
+
+.loader.circle-spin .loader-placeholder {
+    position: absolute;
+    top: -.2rpx;
+    left: -.2rpx;
+    border-radius: 50%;
+    border: .2rpx solid transparent;
+    border-top: .2rpx solid #1ABC9C;
+    width: 60rpx;
+    height: 60rpx;
+    box-sizing: content-box;
+    -webkit-animation: circle-spin 1s ease infinite;
+    animation: circle-spin 1s ease infinite;
+}
+
+@keyframes circle-spin {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes circle-spin {
+    0% {
+        -webkit-transform: rotate(0);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+
+/*-------未读消息--------*/
+
+
+/*-------感觉卡片--------*/
+
+.feel_content {
+    position: absolute;
+    right: 50rpx;
+    top: 20rpx;
+    background: #F4F4F4;
+    border-radius: 25rpx;
+}
+
+.feel_icon {
+    height: 48rpx;
+    width: 48rpx;
+    float: left;
+    border-radius: 25rpx;
+}
+
+.feel_lable {
+    height: left;
+    width: 160rpx;
+    font-size: 28rpx;
+    text-align: center;
+    line-height: 48rpx;
+    color: #565656;
+}
+
+.feel_choose {
+    width: 100%;
+    padding-top: 30rpx;
+    padding-bottom: 20rpx;
+}
+
+.feel_choose_content {
+    width: 100rpx;
+    height: 90rpx;
+    float: left;
+    margin-left: 35rpx;
+}
+
+.feel_choose_icon {
+    width: 50rpx;
+    height: 50rpx;
+    border-radius: 25rpx;
+    margin-left: 27rpx;
+}
+
+.feel_choose_lable {
+    margin-top: 10rpx;
+    width: 100rpx;
+    text-align: center;
+    font-size: 28rpx;
+    text-align: center;
+    line-height: 48rpx;
+    color: #494444;
+}

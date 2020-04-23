@@ -1,0 +1,546 @@
+<slot>
+
+</slot>
+
+<!-- 按钮组件 -->
+<view class="component" wx:if="{{data.type==='btn'}}">
+    <!-- 判断有几个按钮,循环遍历 -->
+    <view class="layout {{data.layout}}" style="bottom:{{_bottom}}rpx;margin-top:-{{_bottom}}rpx">
+        <view style="{{item.style}}" wx:for="{{data.btnNCB}}" class="btn_number btn_{{item.key}}">
+            <view class="main_content" wx:if="{{item.type!=='singleRow'}}" bind:tap="_clickBtn" data-key="{{item.key}}" data-value="{{item.content}}">
+                <view class="content">
+                    <view class="icon" wx:if="{{item.icon!==undefined}}">
+                        <image src="{{item.icon}}" />
+                    </view>
+                    <view class="content_value">{{item.content}}</view>
+                </view>
+            </view>
+            <view class="main_content" wx:if="{{item.type==='singleRow'}}">
+                <dialog style="" type="singleRow" isFull="false" lableTitle="{{item.title}}" methodSuccess="evenP" bindevenP="_clickBtnDateDialog" otherData="{{item.data}}">
+                    <view style="height: 30rpx;margin: auto;">
+                        <view class="content">
+                            <view class="icon" wx:if="{{item.icon!==undefined}}">
+                                <image src="{{item.icon}}" />
+                            </view>
+                            <view class="content_value">{{item.content}}</view>
+                        </view>
+                    </view>
+                </dialog>
+            </view>
+        </view>
+    </view>
+</view>
+
+<!-- 按钮 + input 组件 -->
+<view class="component" wx:if="{{data.type==='input'}}">
+    <!-- 判断有几个按钮,循环遍历 -->
+    <view class="layout {{data.layout}}" style="bottom:{{_bottom}}rpx;">
+        <view style="{{item.style}}" wx:for="{{data.btnNCB}}" wx:if="{{item.key===0}}" bind:tap="_clickBtn" class="btn_number btn_{{item.key}}" data-key="{{item.key}}" data-value="{{item.content}}">
+            <view class="main_content">
+                <view class="content">
+                    <view class="icon" wx:if="{{item.icon!==undefined}}">
+                        <image src="{{item.icon}}" />
+                    </view>
+                    <view class="content_value">{{item.content}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view style="{{item.style}}" wx:for="{{data.btnNCB}}" wx:if="{{item.key===1}}" class="_input">
+        <view class="input_lable"><input class="input_c" bindblur="_bindkeyboardheightchange" value="{{inputValue}}" focus bindkeyboardheightchange="_bindkeyboardheightchange" adjust-position="true" bindinput="_setInputValue" /> </view>
+        <view class="issend" wx:if="{{inputValue===null||inputValue===''}}"> 发送 </view>
+        <view class="issend" wx:else bind:tap="_clickBtnInputCheck" style="color:#00A7DE;" data-check="{{item.check}}" data-key="{{item.key}}" data-value="{{inputValue}}"> 发送 </view>
+        <!-- <view class="issend" bind:tap="_clickBtn" style="color:#00A7DE;" data-key="{{item.key}}" data-value="{{inputValue}}"> 发送 </view> -->
+    </view>
+</view>
+
+<!-- 当前日期选择组件 -->
+<view class="component" wx:if="{{data.type==='date_curpage'}}">
+    <view class="piker">
+        <view class="piker_main">
+            <picker-view indicator-style="height: {{curPageDate.height}}px;" style="width: 100%; height: 100%" value="{{curPageDate_value}}" bindchange="bindChange">
+                <picker-view-column>
+                    <view wx:for="{{curPageDate.year}}" style="line-height: {{curPageDate.height}}px;text-align: center;">{{item}}年</view>
+                </picker-view-column>
+                <picker-view-column>
+                    <view wx:for="{{curPageDate.month}}" style="line-height: {{curPageDate.height}}px;text-align: center;">{{item}}月</view>
+                </picker-view-column>
+                <picker-view-column>
+                    <view wx:for="{{curPageDate.date}}" style="line-height: {{curPageDate.height}}px;text-align: center;">{{item}}日</view>
+                </picker-view-column>
+            </picker-view>
+        </view>
+        <view class="layout {{data.layout}}" style="bottom:{{_bottom}}rpx;">
+            <view style="{{item.style}}" bind:tap="_clickBtnCurPageDate" class="btn_number">
+                <view class="main_content">
+                    <view class="content">
+                        <view class="content_value">确定</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+
+
+<!-- 日期选择组件 -->
+<view class="component" wx:if="{{data.type==='date'}}">
+    <!-- 判断有几个按钮,循环遍历 -->
+    <view class="layout {{data.layout}}" style="bottom:{{_bottom}}rpx;">
+        <view style="{{item.style}}" wx:for="{{data.btnNCB}}" class="btn_number btn_{{item.key}}" data-key="{{item.key}}" data-value="{{item.content}}" data-select="{{item.select}}" wx:if="{{item.select===true}}">
+            <view class="main_content">
+                <dialog style="" type="date" isFull="false" lableTitle="时间选择器" methodSuccess="evenP" bindevenP="_clickBtnDateDialog">
+                    <view style="width: 250rpx;height: 30rpx;margin: auto;">
+                        <view class="content">
+                            <view class="icon" wx:if="{{item.icon!==undefined}}">
+                                <image src="{{item.icon}}" />
+                            </view>
+                            <view class="content_value">{{item.content}}</view>
+                        </view>
+                    </view>
+                </dialog>
+            </view>
+        </view>
+
+        <view style="{{item.style}}" wx:for="{{data.btnNCB}}" bind:tap="_clickBtnDate" class="btn_number btn_{{item.key}}" data-key="{{item.key}}" data-value="{{item.content}}" data-select="{{item.select}}" wx:if="{{item.select!==true}}">
+            <view class="main_content">
+                <view class="content">
+                    <view class="icon" wx:if="{{item.icon!==undefined}}">
+                        <image src="{{item.icon}}" />
+                    </view>
+                    <view class="content_value">{{item.content}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+
+<!-- 天数选择组件 -->
+<view class="component" wx:if="{{data.type==='select_day'}}">
+    <!-- 判断有几个按钮,循环遍历 -->
+    <view class="layout {{data.layout}}" style="bottom:{{_bottom}}rpx;">
+        <view style="{{item.style}}" wx:for="{{data.btnNCB}}" class="btn_number btn_{{item.key}}">
+            <view class="main_content" wx:if="{{item.key===0}}">
+                <view class="select_day select_day_left" data-isadd="{{false}}" bind:tap="_select_day">-</view>
+                <view class="content">
+                    <view class="content_value">{{select_day}}</view>
+                </view>
+                <view class="select_day select_day_right" data-isadd="{{true}}" bind:tap="_select_day">+</view>
+            </view>
+            <view class="main_content" wx:if="{{item.key===1}}" bind:tap="_clickBtn" data-key="{{item.key}}" data-value="{{select_day}}{{unit}}">
+                <view class="content" wx:if="{{item.key===1}}">
+                    <view class="content_value">{{item.content}}</view>
+                </view>
+            </view>
+            <view class="main_content" wx:if="{{item.key>1}}" bind:tap="_clickBtn" data-key="{{item.key}}" data-value="{{item.content}}">
+                <view class="content">
+                    <view class="content_value">{{item.content}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+
+
+
+<!-- 刻度 组件 -->
+<view class="component" wx:if="{{data.type==='calibration'}}">
+    <!-- 判断有几个按钮,循环遍历 -->
+    <view class="scale_main {{data.style}}">
+        <view class="scale_value">{{curScaleValue}}</view>
+        <view class="scale_point">
+            <view class="scale_point_value">
+                <image wx:if="{{data.style!=='calibration_thermometer'}}" style="width: 40rpx;height: 80rpx;margin-left:0rpx" src="../../package_public/images_patient/{{data.style}}.png"></image>
+                <image wx:else style="width: 40rpx;height: 80rpx;margin-left:0rpx;margin-top:30rpx" src="../../package_public/images_patient/{{data.style}}.png"></image>
+            </view>
+        </view>
+        <view class="scale_hidebar"></view>
+        <scroll-view class="scale_scroll" scroll-x="{{true}}" catchscroll="_initScale" scroll-into-view="{{toScaleView}}">
+            <view class="scroll_head" style="width: {{scroll_head}}px;height: 10rpx;"></view>
+            <view wx:for="{{total_scale}}" id="scale_{{item}}" class="scale_scroll_main" wx:key="{{item}}">
+                <view class="scale">
+                    <view class="scale_short" wx:if="{{item%10!==0}}"></view>
+                    <view class="scale_long" wx:if="{{item%10===0}}"></view>
+                    <view class="scale_number" wx:if="{{item%10===0&&data.style==='calibration_thermometer'}}">{{item/10+data.minscale}}</view>
+                    <view class="scale_number" wx:if="{{item%10===0&&data.style!=='calibration_thermometer'}}">{{item+data.minscale}}</view>
+                </view>
+            </view>
+            <view class="scroll_end" style="width: {{scroll_end}}px;height: 10rpx;"></view>
+        </scroll-view>
+    </view>
+    <view class="layout {{data.layout}}" style="bottom:{{_bottom}}rpx;">
+        <view style="{{item.style}}" bind:tap="_clickBtn" class="btn_number btn_{{item.key}}" data-key="{{-1}}" data-value="{{curScaleValue}}">
+            <view class="main_content">
+                <view class="content">
+                    <view class="content_value">确认</view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+
+<!-- 多选组件 -->
+<view class="component" wx:if="{{data.type==='select_multi'}}">
+    <!-- 判断有几个按钮,循环遍历 -->
+    <view class="layout {{data.layout}}" style="bottom:{{_bottom}}rpx;">
+        <view style="{{item.style}}" wx:for="{{data.btnNCB}}" wx:if="{{item.key===0}}" bind:tap="_clickBtn" class="btn_number btn_{{item.key}}" data-key="{{item.key}}" data-value="{{item.content}}">
+            <view class="main_content">
+                <view class="content">
+                    <view class="icon" wx:if="{{item.icon!==undefined}}">
+                        <image src="{{item.icon}}" />
+                    </view>
+                    <view class="content_value">{{item.content}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="_select bottom_{{data.btnNCB.length}}" wx:for="{{data.btnNCB}}" wx:if="{{item.key===1}}">
+        <view class="select_main">
+            <view class="select_options">
+                <view wx:for="{{multi}}" class="select_1">
+                    <image wx:if="{{item.select}}" bind:tap="_initMulti" data-status="{{item.select}}" data-index="{{item.key}}" class="select_2" style="width: 40rpx;height:40rpx" src="../../package_public/images_doctor/137_1.png" mode="aspectFit|aspectFill|widthFix" lazy-load="false"
+                    />
+                    <image wx:else class="select_2" bind:tap="_initMulti" data-status="{{item.select}}" data-index="{{item.key}}" style="width: 40rpx;height:40rpx" src="" mode="aspectFit|aspectFill|widthFix" lazy-load="false" />
+                    <view class="select_3">{{item.value}}</view>
+                </view>
+            </view>
+            <view class="select_true">
+                <view class="select_btn" bind:tap="_returnMulti" data-key="{{item.key}}" data-value="无">确认</view>
+            </view>
+        </view>
+    </view>
+</view>
+
+
+<!-- 单选组件 -->
+<view class="component" wx:if="{{data.type==='select_radio'}}">
+    <!-- 判断有几个按钮,循环遍历 -->
+    <view class="layout {{data.layout}}" style="bottom:{{_bottom}}rpx;">
+        <view style="{{item.style}}" wx:if="{{item.key===0&&item.type!=='date'}}" wx:for="{{data.btnNCB}}" bind:tap="_clickBtn" class="btn_number btn_{{item.key}}" data-key="{{item.key}}" data-value="{{item.content}}">
+            <view class="main_content">
+                <view class="content">
+                    <view class="icon" wx:if="{{item.icon!==undefined}}">
+                        <image src="{{item.icon}}" />
+                    </view>
+                    <view class="content_value">{{item.content}}</view>
+                </view>
+            </view>
+        </view>
+        <view style="{{item.style}}" wx:if="{{item.key===0&&item.type==='date'}}" wx:for="{{data.btnNCB}}" class="btn_number btn_{{item.key}}" data-key="{{item.key}}" data-value="{{item.content}}" data-select="{{item.select}}">
+            <view class="main_content" bindtap="_setShow">
+                <dialog style="" type="date" isFull="false" lableTitle="时间选择器" methodSuccess="evenP" bindevenP="_clickBtnDateDialog" disappearFun="eventD" bindeventD="_setshowTrue">
+                    <view style="width: 250rpx;height: 30rpx;margin: auto;">
+                        <view class="content">
+                            <view class="icon" wx:if="{{item.icon!==undefined}}">
+                                <image src="{{item.icon}}" />
+                            </view>
+                            <view class="content_value">{{item.content}}</view>
+                        </view>
+                    </view>
+                </dialog>
+            </view>
+        </view>
+    </view>
+    <view class="_select bottom_{{data.btnNCB.length}}" wx:for="{{data.btnNCB}}" wx:if="{{item.key===1&&show}}">
+        <view class="select_main">
+            <view class="select_options">
+                <view wx:for="{{multi}}" class="select_1">
+                    <image wx:if="{{item.select}}" bind:tap="_initRadio" data-status="{{item.select}}" data-index="{{item.key}}" class="select_4" style="width: 40rpx;height:40rpx" src="../../package_public/images_doctor/137.png" />
+                    <image wx:else class="select_4" bind:tap="_initRadio" data-status="{{item.select}}" data-index="{{item.key}}" style="width: 40rpx;height:40rpx" src="" />
+                    <view class="select_3">{{item.value}}</view>
+                </view>
+            </view>
+            <view class="select_true">
+                <view class="select_btn" bind:tap="_returnMulti" data-key="{{item.key}}" data-value="无">确认</view>
+            </view>
+        </view>
+    </view>
+</view>
+
+
+
+
+<!-- 单选组件 -->
+<view class="component" wx:if="{{data.type==='select_radio_scroll'}}">
+    <!-- 判断有几个按钮,循环遍历 -->
+    <view class="layout {{data.layout}}" style="bottom:{{_bottom}}rpx;">
+        <view style="{{item.style}}" wx:for="{{data.btnNCB}}" wx:if="{{item.key===0}}" bind:tap="_clickBtn" class="btn_number btn_{{item.key}}" data-key="{{item.key}}" data-value="{{item.content}}">
+            <view class="main_content">
+                <view class="content">
+                    <view class="icon" wx:if="{{item.icon!==undefined}}">
+                        <image src="{{item.icon}}" />
+                    </view>
+                    <view class="content_value">{{item.content}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="_select bottom_{{data.btnNCB.length}}" wx:for="{{data.btnNCB}}" wx:if="{{item.key===1}}">
+        <view class="select_main" style="width: 100%;">
+            <view class="select_options" style="width: 700rpx;overflow-y: auto;max-height: 130px;border: 1rpx solid #EEEEEE;border-radius: 20rpx;">
+                <view class="select_scroll" wx:for="{{multi}}" bind:tap="_initRadio" data-status="{{item.select}}" data-index="{{item.key}}">
+                    <view class="select_scroll_1">
+                        <image wx:if="{{item.select}}" class="select_scroll_icon" src="../../package_public/images_doctor/137_1.png"></image>
+                        <view wx:else class="select_scroll_icon"></view>
+                    </view>
+                    <view class="select_scroll_2">{{item.value}}</view>
+                    <view style="clear: both;"></view>
+                </view>
+            </view>
+            <view class="select_true">
+                <view class="select_btn" bind:tap="_returnMulti" data-key="{{item.key}}" data-value="无">确认</view>
+            </view>
+        </view>
+    </view>
+</view>
+
+
+
+<!-- 单选组件 -->
+<view class="component" wx:if="{{data.type==='select_multi_scroll'}}">
+    <!-- 判断有几个按钮,循环遍历 -->
+    <view class="layout {{data.layout}}" style="bottom:{{_bottom}}rpx;">
+        <view style="{{item.style}}" wx:for="{{data.btnNCB}}" wx:if="{{item.key===0}}" bind:tap="_clickBtn" class="btn_number btn_{{item.key}}" data-key="{{item.key}}" data-value="{{item.content}}">
+            <view class="main_content">
+                <view class="content">
+                    <view class="icon" wx:if="{{item.icon!==undefined}}">
+                        <image src="{{item.icon}}" />
+                    </view>
+                    <view class="content_value">{{item.content}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="_select bottom_{{data.btnNCB.length}}" wx:for="{{data.btnNCB}}" wx:if="{{item.key===1}}">
+        <view class="select_main" style="width: 100%;">
+            <view class="select_options" style="width: 700rpx;overflow-y: auto;max-height: 130px;border: 1rpx solid #EEEEEE;border-radius: 20rpx;">
+                <view class="select_scroll" wx:for="{{multi}}" bind:tap="_initMulti" data-status="{{item.select}}" data-index="{{item.key}}">
+                    <view class="select_scroll_1">
+                        <image wx:if="{{item.select}}" class="select_scroll_icon" style="border-radius: 8rpx;" src="../../package_public/images_doctor/137_1.png"></image>
+                        <view wx:else class="select_scroll_icon" style="border-radius: 8rpx;"></view>
+                    </view>
+                    <view class="select_scroll_2">{{item.value}}</view>
+                    <view style="clear: both;"></view>
+                </view>
+            </view>
+            <view class="select_true">
+                <view class="select_btn" bind:tap="_returnMulti" data-key="{{item.key}}" data-value="无">确认</view>
+            </view>
+        </view>
+    </view>
+</view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 聊天气泡组件 -->
+<view class="component_chat" scroll-with-animation="{{false}}" wx:if="{{data.type==='chat'}}">
+    <!-- <scroll-view scroll-y="{{true}}" scroll-x="{{true}}" class="d-scroll_1" scroll-into-view="{{chatView}}" bindscrolltoupper="_scorllTop" bindscrolltolower="_scorllBottom" upper-threshold="{{0}}" lower-threshold="{{0}}"> -->
+    <scroll-view scroll-y="{{true}}" scroll-x="{{true}}" class="d-scroll_1" scroll-into-view="{{chatView}}" bindscroll="_chatScroll" bindscrolltolower="_scorllBottom" bindtouchend="_touchendsrc" bindtouchstart="_touchendstart" lower-threshold="{{5}}">
+        <view style="width:100%;min-height:30rpx;max-height: 60rpx;">
+            <view wx:if="{{isLoadingHistory && !distanceTop}}" style="margin-top: 30rpx;color:#CDCDCD;width: 100%; text-align: center;font-size: 25rpx; height: 80rpx; line-height: 60rpx;">下拉查看历史记录</view>
+            <view wx:if="{{isLoadingHistory && distanceTop}}" style="height: 80rpx;padding-left: 300rpx;margin-top: 30rpx;">
+                <view style="float: left;">
+                    <view class="loader circle-spin small">
+                        <view class="loader-placeholder"></view>
+                    </view>
+                </view>
+                <view style="float: left;;color:#CDCDCD;text-align: center;font-size: 25rpx; height: 60rpx; line-height: 60rpx;">松手查看</view>
+                <view style="clear: both;"></view>
+            </view>
+        </view>
+        <view class="chat" wx:for="{{data.chatData}}" wx:key="{{item.key}}" id="chat_{{item.key}}">
+            <view class="chat_time">{{item.time}}</view>
+            <image wx:if="{{item.type==='image'}}" bind:touchmove="_touchmove" bind:touchstart="_touchstart" bind:touchend="_touchend" class="chat_image chat_contet_{{item.float}}" data-type="{{item.type}}" data-curpath="{{item.content}}" style="background:url({{item.content}}) no-repeat center center;background-size:cover;"
+            />
+            <view wx:elif="{{item.type==='card_middle'}}" class="card_middle">
+                <view class="card_middle_main">
+                    <view class="card_middle_message" bind:tap="_clickBtn" data-type="type_05" data-content="未读消息">
+                        <view wx:if="{{item.info3}}" style="width: 5px;height: 5px;border-radius: 5px;background: #FF3030;position: absolute;top: 0.5px;right: 0rpx;"></view>
+                        <image src="/package_public/images_patient/message.png"></image>
+                    </view>
+                    <view class="card_middle_content">{{item.content}}</view>
+                    <!-- <view class="card_middle_weather">{{item.weather}}</view> -->
+                    <view class="card_middle_btns">
+                        <!-- <dialog data-type="type_01" data-content="症状反馈" class="card_middle_btn card_middle_btn_color1" type="radio" isFull="true" all="false" methodSuccess="evenP" bindevenP="_clickBtnDialog" multiSelect="N" otherData="{{'发烧/发热,恶心和呕吐,脱发,皮疹,疼痛,腹泻,腹胀'}}">症状反馈</dialog> -->
+                        <view bind:tap="_clickBtn" data-type="type_01" data-content="我不舒服" class="card_middle_btn card_middle_btn_color1">
+                            <view class='unmessage'>
+                                <view class='unmessage_content' wx:if="{{item.info1!==0}}">
+                                    <text wx:if="{{models==='ANDROID'}}" style="margin-top: -5rpx;margin-left: -3rpx;">{{item.info1}}</text>
+                                    <text wx:else>{{item.info1}}</text>
+                                </view>
+                                <view class='unmessage_lable'>我不舒服</view>
+                            </view>
+                        </view>
+                        <view bind:tap="_clickBtn" data-type="type_04" data-content="我要联系" class="card_middle_btn card_middle_btn_color1">
+                            <view class='unmessage'>
+                                <!-- <view class='unmessage_content' wx:if="{{item.info3!==0}}">{{item.info3}}</view> -->
+                                <view class='unmessage_lable'>我要联系</view>
+                            </view>
+                        </view>
+                        <view bind:tap="_clickBtn" data-type="type_02" data-content="检查报告" class="card_middle_btn card_middle_btn_color1">
+                            <view class='unmessage'>
+                                <view class='unmessage_content' wx:if="{{item.info2!==0}}">
+                                    <text wx:if="{{models==='ANDROID'}}" style="margin-top: -5rpx;margin-left: -3rpx;">{{item.info2}}</text>
+                                    <text wx:else>{{item.info2}}</text>
+                                </view>
+                                <view class='unmessage_lable'>检查报告</view>
+                            </view>
+                        </view>
+                        <view bind:tap="_clickBtn" data-type="type_03" data-content="产品建议" class="card_middle_btn card_middle_btn_color2">产品建议</view>
+                    </view>
+                </view>
+            </view>
+            <view wx:elif="{{item.type==='feel_middle'}}" class="card_middle">
+                <view class="card_middle_main">
+                    <view class="card_middle_content" style="position: relative;font-size: 35rpx;">今天感觉如何?
+                        <view class="feel_content" wx:if="{{item.feeling!==-1}}">
+                            <view class="feel_icon">
+                                <image src="/package_public/images_patient/{{item.feeling+166}}.png" style="height:100%;width:100%;"></image>
+                            </view>
+                            <view class="feel_lable">{{item.feelinglable}}</view>
+                        </view>
+                    </view>
+                    <view class="feel_choose" wx:if="{{item.feeling===-1}}">
+                        <view class="feel_choose_content" data-feeling="{{4}}" data-content="{{'很差'}}" bindtap="_setfeel">
+                            <image class="feel_choose_icon" src="/package_public/images_patient/170.png"></image>
+                            <view class="feel_choose_lable">很差</view>
+                        </view>
+                        <view class="feel_choose_content" data-feeling="{{3}}" data-content="{{'不好'}}" bindtap="_setfeel">
+                            <image class="feel_choose_icon" src="/package_public/images_patient/169.png"></image>
+                            <view class="feel_choose_lable">不好</view>
+                        </view>
+                        <view class="feel_choose_content" data-feeling="{{2}}" data-content="{{'一般'}}" bindtap="_setfeel">
+                            <image class="feel_choose_icon" src="/package_public/images_patient/168.png"></image>
+                            <view class="feel_choose_lable">一般</view>
+                        </view>
+                        <view class="feel_choose_content" data-feeling="{{1}}" data-content="{{'好'}}" bindtap="_setfeel">
+                            <image class="feel_choose_icon" src="/package_public/images_patient/167.png"></image>
+                            <view class="feel_choose_lable">好</view>
+                        </view>
+                        <view class="feel_choose_content" data-feeling="{{0}}" data-content="{{'非常好'}}" bindtap="_setfeel">
+                            <image class="feel_choose_icon" src="/package_public/images_patient/166.png"></image>
+                            <view class="feel_choose_lable">非常好</view>
+                        </view>
+                        <view style="clear: both;"></view>
+                    </view>
+                </view>
+            </view>
+            <view wx:elif="{{item.type==='notice'}}" class="card_middle">
+                <view class="card_middle_main">
+                    <view class="card_middle_content">
+                        <view class="notice_icon">
+                            <image style="width: 50rpx;height: 50rpx;margin-top: 5rpx;" src="/package_public/images_patient/notice.png"></image>
+                        </view>
+                        <view class="notice_content" wx:if="{{item.content.length!==0}}">
+                            {{item.content}}
+                        </view>
+                        <view class="notice_content" wx:else>
+                            小信会时刻关注着您的身体状况和症状反馈,有新的通知会及时提醒你哦!
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view wx:elif="{{item.type==='card_list'}}" class="card_middle">
+                <view class="card_middle_main">
+                    <view class="card_middle_content">{{item.content}}</view>
+                    <view class="card_middle_btns">
+                        <view class="card_list">
+                            <view class="card_list_1" wx:for="{{item.data}}" bindtap="_clickBtn" data-value="{{item.otherData}}" data-type="{{item.type}}">
+                                <view class="card_list_2">{{item.title}}</view>
+                                <view style="float: left;width: 20rpx;height: 20rpx;"></view>
+                                <view class="card_list_3">{{item.maincontent}}</view>
+                                <view class="card_list_to">
+                                    <image style="width: 100%;height: 100%;" src="../../package_public/images_doctor/135.png" />
+                                </view>
+                            </view>
+
+                            <view class="card_list_1" wx:if="{{item.title==='report'}}" bindtap="_clickBtnReport" data-value="{{item.otherData}}" data-type="{{item.type}}">
+                                <view class="card_list_2">其他报告</view>
+                                <view style="float: left;width: 20rpx;height: 20rpx;"></view>
+                                <view class="card_list_3">反馈检查报告</view>
+                                <view class="card_list_to">
+                                    <image style="width: 100%;height: 100%;" src="../../package_public/images_doctor/135.png" />
+                                </view>
+                            </view>
+
+                            <dialog data-key="info" wx:if="{{item.title==='symptoms'}}" data-value="{{item.otherData}}" data-type="{{item.type}}" type="radio" isFull="true" all="false" methodSuccess="evenP" bindevenP="_clickBtnDialog" multiSelect="N" otherData="{{item.poeList}}">
+                                <view class="card_list_1">
+                                    <view class="card_list_2">其它症状</view>
+                                    <view style="float: left;width: 20rpx;height: 20rpx;"></view>
+                                    <view class="card_list_3">反馈发生的症状</view>
+                                    <view class="card_list_to">
+                                        <image style="width: 100%;height: 100%;" src="../../package_public/images_doctor/135.png" />
+                                    </view>
+                                </view>
+                            </dialog>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view wx:elif="{{item.type==='mode_QA'}}" catchtap="_mode_QA" data-toview="{{item.toview}}" class="chat_contet chat_contet_{{item.float}} infocard" style="background:{{item.background}};color:{{item.color}};">
+                <view class="title">{{item.title}}</view>
+                <view class="content" wx:if="{{item.content.length!==0}}">
+                    <view wx:for="{{item.content}}">
+                        <view class="infocard_content_key"><text style="color:#00A7DE;">Q: </text>{{item.question}}</view>
+                        <view class="infocard_content_value"><text style="color:#FF972A;">A: </text>{{item.answer}}</view>
+                    </view>
+                    <view style="clear:both;"></view>
+                </view>
+                <view class="content" wx:else style="color:darkorange;">卡片没有设置需要展示的主要内容</view>
+            </view>
+            <view wx:elif="{{item.type==='mode_PV'}}" class="chat_contet chat_contet_{{item.float}} infocard" style="background:{{item.background}};color:{{item.color}};">
+                <view class="title">{{item.title}}</view>
+                <view class="content" wx:if="{{item.content.length!==0}}">
+                    <view wx:for="{{item.content}}">
+                        <view class="infocard_content_key"><text style="color:#AAAAAD;">{{item.question}}: </text>{{item.answer}}</view>
+                    </view>
+                    <view style="clear:both;"></view>
+                </view>
+                <view class="content" wx:else style="color:darkorange;">卡片没有设置需要展示的主要内容</view>
+            </view>
+            <view wx:elif="{{item.type==='images'}}" class="chat_contet chat_contet_{{item.float}} infocard" style="background:{{item.background}};color:{{item.color}};">
+                <view class="title">{{item.title}}</view>
+                <view class="infocard_images">
+                    <view wx:for="{{item.content}}" wx:for-item="item_1" data-imagecontent="{{item_1}}" data-imagescontent="{{item.content}}" catchtap="_showinfocardimages">
+                        <image wx:if="{{index<3 || item.content.length===4}}" class="infocard_image" style="background:url({{item.host}}/ThumbnailImages{{item_1}}) no-repeat center center;background-size:cover;" />
+                        <view wx:if="{{index==3 && item.content.length > 4}}" class="infocard_image">
+                            <image style="width:100%;height:100%" modal="center" src="{{item.host}}/ThumbnailImages{{item_1}}" />
+                            <view class="showHideImage">+ {{item.content.length-4}}</view>
+                        </view>
+                    </view>
+                </view>
+                <view style="clear:both;"></view>
+            </view>
+            <view wx:else bindtap="_opertext" data-question="{{item.question}}" data-view="{{item.view}}" data-answer="{{item.answer}}" class="chat_contet chat_contet_{{item.float}}" style="background:{{item.background}};color:{{item.color}};">
+                <view wx:for="{{item.content}}" style="word-break: normal;">{{item}}</view>
+            </view>
+            <view style="clear:both;"></view>
+        </view>
+        <view style="width: 100%;height:100%; " wx:if="{{data.chatData.length===1&&isLoadingHistory}}"></view>
+        <view style="width: 100%;height:90%; " wx:if="{{data.chatData.length===2&&isLoadingHistory}}"></view>
+        <view style="width: 100%;height:80%; " wx:if="{{data.chatData.length===3&&isLoadingHistory}}"></view>
+        <view style="width: 100%;height:60%; " wx:if="{{data.chatData.length===4&&isLoadingHistory}}"></view>
+        <view style="width: 100%;height:10%; "></view>
+    </scroll-view>
+</view>

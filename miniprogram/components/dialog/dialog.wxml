@@ -1,0 +1,108 @@
+<view data-disappear="{{disappearFun}}" data-type="{{type}}" data-title="{{lableTitle}}" data-full="{{isFull}}" data-all="{{all}}" data-success="{{methodSuccess}}" data-other="{{otherData}}" data-multi="{{multiSelect}}" data-defaultvalue="{{default_value}}"
+    bindtap="_setInitDialogStatus">
+    <slot></slot>
+</view>
+
+<view wx:if="{{dialogType==='date'||dialogType==='radio'||dialogType==='singleRow'}}" animation="{{animation_maskLayer}}" class="maskLayer" data-status="false" bindtap="_setDialogStatus">
+
+</view>
+
+<view wx:if="{{dialogType==='date'}}" animation="{{animation}}" class="inner" style="bottom:-{{height}}px;height:{{height}}px;">
+    <view class="content">
+        <!-- content 主要内容 -->
+
+        <view class="btn">
+            <view class="btn1" data-status="false" bindtap="_setDialogStatus">{{btn[0]}}</view>
+            <view class="btn_lable" style="top:10rpx;">
+                <view class="btn_lable_value">{{title}}</view>
+            </view>
+            <view class="btn2" data-status="false" bindtap="_returnTrueData">{{btn[1]}}</view>
+        </view>
+        <view>
+            <picker-view indicator-class="picker-view-column_style1" style="width: 100%; height: 160px;" value="{{dataCollection[0].value}}" bindchange="_getSelectedDate">
+                <picker-view-column style="background:#fff;">
+                    <view wx:for="{{dataCollection[0].years}}" wx:key="item" class="picker-view-column_style1_view">{{item}}年</view>
+                </picker-view-column>
+                <picker-view-column style="background:#fff;">
+                    <view wx:for="{{dataCollection[0].months}}" wx:key="item" class="picker-view-column_style1_view">{{item}}月</view>
+                </picker-view-column>
+                <picker-view-column style="background:#fff;">
+                    <view wx:for="{{dataCollection[0].days}}" wx:key="item" class="picker-view-column_style1_view">{{item}}日</view>
+                </picker-view-column>
+            </picker-view>
+        </view>
+        <!-- content 主要内容 -->
+    </view>
+</view>
+
+
+
+<view wx:if="{{dialogType==='singleRow'}}" animation="{{animation}}" class="inner" style="bottom:-{{height}}px;height:{{height}}px;">
+    <view class="content">
+        <!-- content 主要内容 -->
+
+        <view class="btn">
+            <view class="btn1" data-status="false" bindtap="_setDialogStatus">{{btn[0]}}</view>
+            <view class="btn_lable">
+                <view class="btn_lable_value">{{title}}</view>
+            </view>
+            <view class="btn2" data-status="false" bindtap="_returnTrueSingleData">{{btn[1]}}</view>
+        </view>
+        <view>
+            <picker-view indicator-style="height: 40px;" style="width: 100%; height: 160px;" value="{{dataCollection[3].value}}" bindchange="_getSelectedSingle">
+                <picker-view-column>
+                    <view wx:for="{{dataCollection[3].datatype}}" wx:key="item" class="picker-view-column_style1">{{item}}</view>
+                </picker-view-column>
+            </picker-view>
+        </view>
+        <!-- content 主要内容 -->
+    </view>
+</view>
+
+
+
+
+<view wx:if="{{dialogType==='radio'}}" animation="{{animation}}" class="inner_radio" style="bottom:-{{height/2}}px;height:{{height}}px;">
+    <view class="inner_radio_content">
+        <!-- content 主要内容 -->
+        <view class="inner_radio_main">
+            <view class="inner_radio_column" wx:if="{{isAll && multi==='Y'}}">
+                <view class="inner_radio_lable">
+                    <text style="padding-left:20rpx;">全选</text>
+                </view>
+                <view class="inner_radio_icon">
+                    <image wx:if="{{selectAll}}" data-status="true" bindtap="_setSelectAll" style="height:50rpx;width:50rpx;float:right;margin-right:30rpx;margin-top:25rpx;" src="../../package_public/images_doctor/137_1.png"></image>
+                    <image wx:if="{{!selectAll}}" data-status="false" bindtap="_setSelectAll" style="height:50rpx;width:50rpx;float:right;margin-right:30rpx;margin-top:25rpx;" src="../../package_public/images_doctor/136_1.png"></image>
+                </view>
+            </view>
+            <view calss="inner_radio_column" data-status="false" wx:for="{{dataCollection[2].datatype}}" wx:key="item" data-select="{{item.select}}" data-index="{{item.key}}" bindtap="_setSelectedRadio">
+                <view class="inner_radio_lable">
+                    <view style="padding-left:20rpx;">{{item.value}}</view>
+                </view>
+                <view wx:if="{{multi==='N'}}" class="inner_radio_icon">
+                    <image wx:if="{{item.select}}" style="height:50rpx;width:50rpx;float:right;margin-right:30rpx;margin-top:25rpx;" src="../../package_public/images_doctor/137.png"></image>
+                    <image wx:else style="height:50rpx;width:50rpx;float:right;margin-right:30rpx;margin-top:25rpx;" src="../../package_public/images_doctor/136.png"></image>
+                </view>
+                <view wx:if="{{multi==='Y'}}" class="inner_radio_icon">
+                    <image wx:if="{{item.select}}" style="height:50rpx;width:50rpx;float:right;margin-right:30rpx;margin-top:25rpx;" src="../../package_public/images_doctor/137_1.png"></image>
+                    <image wx:else style="height:50rpx;width:50rpx;float:right;margin-right:30rpx;margin-top:25rpx;" src="../../package_public/images_doctor/136_1.png"></image>
+                </view>
+            </view>
+        </view>
+        <view class="inner_radio_btn" wx:if="{{multi==='Y'}}">
+            <view class="inner_radio_btn1" data-status="false" bindtap="_setDialogStatus">
+                {{btn[0]}}
+            </view>
+            <view class="inner_radio_btn2" data-status="false" bindtap="_returnRadioTrueData">
+                {{btn[1]}}
+            </view>
+        </view>
+        <!-- content 主要内容 -->
+    </view>
+</view>
+
+<!-- 预加载,防止第一次加载无效果 -->
+<view style="opacity:0;display: none;">
+    <image src="../../package_public/images_doctor/137.png" />
+    <image src="../../package_public/images_doctor/137_1.png" />
+</view>
